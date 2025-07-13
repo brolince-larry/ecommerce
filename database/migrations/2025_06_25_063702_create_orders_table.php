@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->decimal('total',10 ,2);
             $table->string('status')->default('pending');
+            $table->boolean('is_paid')->default(false);
+            $table->unsignedBigInteger('branch_id')->nullable();
             $table->timestamps();
         });
     }

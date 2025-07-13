@@ -1,7 +1,7 @@
 <x-app-layout>
     <script src="http://cdn.tailwindcss.com"></script>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold text-white">All Categories</h2>
+        <h2 class="text-xl font-semibold text-white bg-blue-400">All Categories</h2>
     </x-slot>
 
     <div class="py-6">
@@ -27,7 +27,7 @@
 
                 <div class="overflow-x-auto">
                     <table class="min-w-full border text-sm divide-y divide-gray-200">
-                        <thead class="bg-gray-100">
+                        <thead class="bg-green-500">
                             <tr>
                                 <th class="p-2 text-left">#</th>
                                 <th class="p-2 text-left">Name</th>
@@ -37,9 +37,9 @@
                                 <th class="p-2 text-left">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-gray-100">
+                        <tbody class="divide-y bg-green-300">
                             @forelse($categories as $category)
-                                <tr class="hover:bg-gray-50">
+                                <tr class="hover:bg-green-350">
                                     <td class="p-2">{{ $category->id }}</td>
                                     <td class="p-2">{{ $category->name }}</td>
                                     <td class="p-2">{{ $category->description }}</td>

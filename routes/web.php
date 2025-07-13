@@ -1,15 +1,18 @@
 <?php
 
+use App\Models\Payment;
+use function Laravel\Prompts\confirm;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\BranchController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\PaymentController;
-use App\Models\Payment;
 
-use function Laravel\Prompts\confirm;
+use App\Http\Controllers\AdminDashboardController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+//nearest branch
+Route::get('/api/nearest-branch', [BranchController::class, 'nearest'])->name('branches.nearest');
 
 //categories
 //all authenticated can view categories
@@ -56,7 +61,9 @@ Route::post('/payment/pay/{order}', [PaymentController::class, 'pay'])->name('pa
 Route::middleware(['auth', 'rolemanager:admin'])->group(function(){
     Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
     Route::post('/products', [ProductController::class, 'store'])->name('products.store');
-
+    Route::get('admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/admin/paid-orders', [OrderController::class, 'paidOrder'])->name('admin.paid.orders');
+    Route::patch('/admin/orders/{order}/status', [OrderController::class, 'updateStatus'])->name('admin.orders.update-status');
 });
 //carts route
 Route::middleware(['auth', 'rolemanager:customer'])->prefix('customer')->name('customer.')->group(function(){

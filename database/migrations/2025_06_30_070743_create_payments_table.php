@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
             $table->decimal('amount', 10, 2);
+            $table->string('details')->nullable();
             $table->string('status')->default('pending');
             $table->string('method')->default('simulated');
 

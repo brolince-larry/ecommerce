@@ -12,7 +12,12 @@ class Payment extends Model
         'order_id',
         'amount',
         'status',
-        'method'
+        'method',
+        'mpesa_number',
+        'bank_account',
+        'paypal_email',
+        'latitude',
+        'longitude'
     ];
     //payment belong to an order
     public function order(){

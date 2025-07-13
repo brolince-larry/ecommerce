@@ -19,10 +19,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'customer',
             'email' => 'customer.com',
             'password'=> '12345678',
-        ]
-        
-       );
+        ]);
        
        $this->call(AdminSeeder::class);
+       $this->call(BranchSeeder::class);
     }
 }
